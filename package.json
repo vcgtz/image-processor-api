@@ -1,0 +1,28 @@
+{
+  "name": "image-processor-api",
+  "version": "0.0.1",
+  "description": "API to process images",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vcgtz/image-processor-api.git"
+  },
+  "keywords": [
+    "image-processor",
+    "api"
+  ],
+  "author": "Vicente Gutiérrez <vcgtz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vcgtz/image-processor-api/issues"
+  },
+  "homepage": "https://github.com/vcgtz/image-processor-api#readme",
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  }
+}
