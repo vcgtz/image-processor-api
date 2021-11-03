@@ -1,3 +1,8 @@
-const message: string = 'Hello World';
+const hello = (): string => 'hello';
 
-console.log(message);
+const goodbye = (): string => 'goodbye';
+
+export {
+  hello,
+  goodbye,
+};
