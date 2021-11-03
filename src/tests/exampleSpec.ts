@@ -1,4 +1,4 @@
-import { hello, goodbye } from '../index';
+import { hello, goodbye } from '../example';
 
 describe('Example of testing', () => {
   it('says hello', () => {

@@ -1,8 +1,10 @@
-const hello = (): string => 'hello';
+import express from 'express';
 
-const goodbye = (): string => 'goodbye';
+const app: express.Express = express();
+const port: number = 3000;
 
-export {
-  hello,
-  goodbye,
-};
+app.get('/', (req: express.Request, res: express.Response) => {
+  res.send('Hello World!');
+});
+
+app.listen(port, () => console.log(`Serving on ${port}`));
