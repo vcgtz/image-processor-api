@@ -1,10 +1,9 @@
 import express from 'express';
+import routes from './routes/index';
 
 const app: express.Express = express();
 const port: number = 3000;
 
-app.get('/', (req: express.Request, res: express.Response) => {
-  res.send('Hello World!');
-});
+app.use('/', routes);
 
 app.listen(port, () => console.log(`Serving on ${port}`));
