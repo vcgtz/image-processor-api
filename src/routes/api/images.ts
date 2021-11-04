@@ -3,18 +3,23 @@ import * as images from '../../utilities/images';
 
 const imagesRoutes: express.Router = express.Router();
 
-imagesRoutes.get('/', (req: express.Request, res: express.Response) => {
-  const { filename } = req.query;
+imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
+  const { filename, w, h } = req.query;
 
   if (!filename) {
     res.status(404).json({ msg: 'Filename is required' });
   }
 
-  images.existFile(filename as string)
-    .then((filePath) => res.sendFile(filePath))
-    .catch(() => {
-      res.status(404).json({ msg: 'Image not found' });
-    });
+  if (w && h) {
+    await images.createFolderIfNotExists('thumbs');
+  }
+
+  try {
+    const filePath: string = await images.existFile(filename as string);
+    res.sendFile(filePath);
+  } catch (e) {
+    res.status(404).json({ msg: 'Image not found' });
+  }
 });
 
 export default imagesRoutes;
