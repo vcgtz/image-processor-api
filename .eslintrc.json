@@ -16,6 +16,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "prefer-destructuring": "warn",
     "import/extensions": [0],
     "import/no-unresolved": [1]
   }

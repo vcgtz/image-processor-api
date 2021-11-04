@@ -1,10 +1,13 @@
 import fsPromises from 'fs/promises';
 
-const existFile = async (filename: string): Promise<void> => {
+const existFile = (filename: string): Promise<string> => new Promise((resolve, reject) => {
   const cwd: string = process.cwd();
+  const filePath: string = `${cwd}/images/${filename}.jpg`;
 
-  return fsPromises.access(`${cwd}/images/${filename}.jpg`);
-};
+  fsPromises.access(filePath)
+    .then(() => resolve(filePath))
+    .catch((err) => reject(err));
+});
 
 const e = () => false;
 
