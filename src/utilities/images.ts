@@ -24,14 +24,14 @@ const createFolder = (folderPath: string): Promise<string> => new Promise((resol
     .catch(() => reject(folderPath));
 });
 
-const createFolderIfNotExists = async (folderName: string): Promise<boolean> => {
+const createFolderIfNotExists = async (folderName: string): Promise<string|boolean> => {
   try {
     const folderPath: string = await existFolder(folderName);
 
-    return !!folderPath;
+    return folderPath;
   } catch (folderPath) {
     return createFolder(folderPath as string)
-      .then(() => true)
+      .then((newFolderPath) => newFolderPath)
       .catch(() => false);
   }
 };
