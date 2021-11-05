@@ -16,9 +16,10 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "no-console": "off",
     "arrow-body-style": "off",
     "prefer-destructuring": "warn",
     "import/extensions": [0],
-    "import/no-unresolved": [1]
+    "import/no-unresolved": [0]
   }
 }
