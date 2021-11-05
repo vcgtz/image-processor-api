@@ -7,7 +7,9 @@ const imagesRoutes: express.Router = express.Router();
 const cache: NodeCache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 
 imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
-  const { filename, width, height } = req.query;
+  const filename: string = req.query.filename as string;
+  const width: number = Number(req.query.width);
+  const height: number = Number(req.query.height);
 
   // Validate if filename param exists
   if (!filename) {
@@ -15,8 +17,8 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
   }
 
   // Validate if the image exists
-  const imagePath = `${images.IMAGES_FOLDER}/${filename}`;
-  const existsImage = await images.existImage(filename as string);
+  const imagePath: string = `${images.IMAGES_FOLDER}/${filename}`;
+  const existsImage: boolean = await images.existImage(filename as string);
   if (!existsImage) {
     return res.status(404).json({ msg: 'Filename does not exists' });
   }
@@ -29,9 +31,9 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
   // Return resized image
   try {
     if (width && height) {
-      const thumbFilename = `${width}_${height}_${filename}`;
-      const thumbImagePath = `${images.THUMBS_FOLDER}/${thumbFilename}`;
-      const existsThumbImage = cache.get(thumbFilename);
+      const thumbFilename: string = `${width}_${height}_${filename}`;
+      const thumbImagePath: string = `${images.THUMBS_FOLDER}/${thumbFilename}`;
+      const existsThumbImage: unknown = cache.get(thumbFilename);
 
       if (existsThumbImage) {
         console.log(`Accessed: ${thumbImagePath}`);
@@ -40,7 +42,7 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
       }
 
       await sharp(imagePath)
-        .resize(Number(width as unknown), Number(height as unknown))
+        .resize(width, height)
         .toFile(thumbImagePath);
 
       // Store the path to avoid read a file if this exists

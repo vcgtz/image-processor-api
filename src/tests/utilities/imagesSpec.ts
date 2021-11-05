@@ -20,7 +20,7 @@ describe('Testing utilities to work with files', () => {
 
 describe('Testing creation of thumbnails', () => {
   beforeEach(async () => {
-    const existsThumbFolder = await images.existFolder(images.THUMBS_FOLDER);
+    const existsThumbFolder: boolean = await images.existFolder(images.THUMBS_FOLDER);
 
     if (!existsThumbFolder) {
       await images.createFolder(images.THUMBS_FOLDER);
@@ -28,9 +28,9 @@ describe('Testing creation of thumbnails', () => {
   });
 
   it('creates 50x50 image', async () => {
-    const imagePath = `${images.IMAGES_FOLDER}/santamonica.jpg`;
-    const thumbFilename = '50_50_testing.jpg';
-    const thumbImagePath = `${images.THUMBS_FOLDER}/${thumbFilename}`;
+    const imagePath: string = `${images.IMAGES_FOLDER}/santamonica.jpg`;
+    const thumbFilename: string = '50_50_testing.jpg';
+    const thumbImagePath: string = `${images.THUMBS_FOLDER}/${thumbFilename}`;
 
     await sharp(imagePath).resize(50, 50).toFile(thumbImagePath);
 
@@ -38,8 +38,8 @@ describe('Testing creation of thumbnails', () => {
   });
 
   afterAll(async () => {
-    const thumbFilename = '50_50_testing.jpg';
-    const thumbImagePath = `${images.THUMBS_FOLDER}/${thumbFilename}`;
+    const thumbFilename: string = '50_50_testing.jpg';
+    const thumbImagePath: string = `${images.THUMBS_FOLDER}/${thumbFilename}`;
 
     await fsPromises.unlink(thumbImagePath);
   });
