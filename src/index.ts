@@ -17,3 +17,5 @@ app.use('/', routes);
 
 // Start server
 app.listen(port, () => console.log(`Serving on ${port}`));
+
+export default app;

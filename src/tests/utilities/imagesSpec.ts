@@ -1,6 +1,8 @@
 import sharp from 'sharp';
 import fsPromises from 'fs/promises';
+import supertest from 'supertest';
 import * as images from '../../utilities/images';
+import app from '../../index';
 
 describe('Testing utilities to work with files', () => {
   it('resolve existsImage when the file exists', async () => {
@@ -42,5 +44,32 @@ describe('Testing creation of thumbnails', () => {
     const thumbImagePath = `${images.THUMBS_FOLDER}/${thumbFilename}`;
 
     await fsPromises.unlink(thumbImagePath);
+  });
+});
+
+describe('Testing endpoints to the creation of images', () => {
+  const request: supertest.SuperTest<supertest.Test> = supertest(app);
+
+  it('gets the original image', () => {
+    request.get('/images?filename=santamonica.jpg')
+      .expect(200)
+  });
+
+  it('gets message when the filename is not send it', () => {
+    request.get('http://localhost:3000/images?filename=')
+      .expect('Content-Type', /json/)
+      .expect(400, { msg: 'Filename is required' });
+  });
+
+  it('gets message when the image does not exists', () => {
+    request.get('http://localhost:3000/images?filename=nofile.jpg')
+      .expect('Content-Type', /json/)
+      .expect(404, { msg: 'Filename does not exists' });
+  });
+
+  it('gets message when the width and the height are incomplete', () => {
+    request.get('http://localhost:3000/images?filename=santamonica.jpg&width=200')
+      .expect('Content-Type', /json/)
+      .expect(400, { msg: 'You must specify width and height or none' });
   });
 });

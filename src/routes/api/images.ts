@@ -9,7 +9,7 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
 
   // Validate if filename param exists
   if (!filename) {
-    return res.status(404).json({ msg: 'Filename is required' });
+    return res.status(400).json({ msg: 'Filename is required' });
   }
 
   // Validate if the image exists
