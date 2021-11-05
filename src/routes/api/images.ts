@@ -1,8 +1,10 @@
 import express from 'express';
 import sharp from 'sharp';
+import NodeCache from 'node-cache';
 import * as images from '../../utilities/images';
 
 const imagesRoutes: express.Router = express.Router();
+const cache: NodeCache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 
 imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
   const { filename, width, height } = req.query;
@@ -29,7 +31,7 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
     if (width && height) {
       const thumbFilename = `${width}_${height}_${filename}`;
       const thumbImagePath = `${images.THUMBS_FOLDER}/${thumbFilename}`;
-      const existsThumbImage = await images.existThumbImage(thumbFilename);
+      const existsThumbImage = cache.get(thumbFilename);
 
       if (existsThumbImage) {
         console.log(`Accessed: ${thumbImagePath}`);
@@ -41,6 +43,8 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
         .resize(Number(width as unknown), Number(height as unknown))
         .toFile(thumbImagePath);
 
+      // Store the path to avoid read a file if this exists
+      cache.set(thumbFilename, thumbImagePath);
       console.log(`Created: ${thumbImagePath}`);
 
       return res.sendFile(thumbImagePath);
