@@ -1,44 +1,40 @@
 import fsPromises from 'fs/promises';
 
-const existFile = (filename: string): Promise<string> => new Promise((resolve, reject) => {
-  const cwd: string = process.cwd();
-  const filePath: string = `${cwd}/images/${filename}.jpg`;
+const IMAGES_FOLDER: string = `${process.cwd()}/images`;
 
-  fsPromises.access(filePath)
-    .then(() => resolve(filePath))
-    .catch((err) => reject(err));
-});
+const THUMBS_FOLDER: string = `${process.cwd()}/thumbs`;
 
-const existFolder = (folderName: string): Promise<string> => new Promise((resolve, reject) => {
-  const cwd: string = process.cwd();
-  const folderPath: string = `${cwd}/${folderName}`;
-
-  fsPromises.access(folderPath)
-    .then(() => resolve(folderPath))
-    .catch(() => reject(folderPath));
-});
-
-const createFolder = (folderPath: string): Promise<string> => new Promise((resolve, reject) => {
-  fsPromises.mkdir(folderPath)
-    .then(() => resolve(folderPath))
-    .catch(() => reject(folderPath));
-});
-
-const createFolderIfNotExists = async (folderName: string): Promise<string|boolean> => {
+const existFile = async (filename: string): Promise<boolean> => {
   try {
-    const folderPath: string = await existFolder(folderName);
+    await fsPromises.access(`${IMAGES_FOLDER}/${filename}`);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
 
-    return folderPath;
-  } catch (folderPath) {
-    return createFolder(folderPath as string)
-      .then((newFolderPath) => newFolderPath)
-      .catch(() => false);
+const existFolder = async (folder: string): Promise<boolean> => {
+  try {
+    await fsPromises.access(`${process.cwd()}/${folder}`);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
+const createFolder = async (path: string): Promise<boolean> => {
+  try {
+    await fsPromises.mkdir(path);
+    return true;
+  } catch (e) {
+    return false;
   }
 };
 
 export {
+  IMAGES_FOLDER,
+  THUMBS_FOLDER,
   existFile,
   existFolder,
   createFolder,
-  createFolderIfNotExists,
 };

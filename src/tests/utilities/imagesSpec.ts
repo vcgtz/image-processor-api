@@ -6,7 +6,7 @@ describe('Testing utilities to work with files', () => {
   });
 
   it('reject existsFile when the file exists', async () => {
-    await expectAsync(existFile('unknown')).toBeRejected();
+    await expectAsync(existFile('unknown')).toBeResolvedTo(false);
   });
 
   it('resolve existFolder when the folder exists', async () => {
