@@ -4,9 +4,18 @@ const IMAGES_FOLDER: string = `${process.cwd()}/images`;
 
 const THUMBS_FOLDER: string = `${process.cwd()}/thumbs`;
 
-const existFile = async (filename: string): Promise<boolean> => {
+const existImage = async (filename: string): Promise<boolean> => {
   try {
     await fsPromises.access(`${IMAGES_FOLDER}/${filename}`);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
+const existThumbImage = async (filename: string): Promise<boolean> => {
+  try {
+    await fsPromises.access(`${THUMBS_FOLDER}/${filename}`);
     return true;
   } catch (e) {
     return false;
@@ -34,7 +43,8 @@ const createFolder = async (path: string): Promise<boolean> => {
 export {
   IMAGES_FOLDER,
   THUMBS_FOLDER,
-  existFile,
+  existImage,
+  existThumbImage,
   existFolder,
   createFolder,
 };

@@ -14,7 +14,7 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
 
   // Validate if the image exists
   const imagePath = `${images.IMAGES_FOLDER}/${filename}`;
-  const existsImage = await images.existFile(filename as string);
+  const existsImage = await images.existImage(filename as string);
   if (!existsImage) {
     return res.status(404).json({ msg: 'Filename does not exists' });
   }
@@ -27,8 +27,9 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
   // Return resized image
   try {
     if (width && height) {
-      const thumbImagePath = `${images.THUMBS_FOLDER}/${width}_${height}_${filename}`;
-      const existsThumbImage = await images.existFile(thumbImagePath);
+      const thumbFilename = `${width}_${height}_${filename}`;
+      const thumbImagePath = `${images.THUMBS_FOLDER}/${thumbFilename}`;
+      const existsThumbImage = await images.existThumbImage(thumbImagePath);
 
       if (existsThumbImage) {
         return res.sendFile(thumbImagePath);
