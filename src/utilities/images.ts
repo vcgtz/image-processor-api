@@ -40,11 +40,4 @@ const createFolder = async (path: string): Promise<boolean> => {
   }
 };
 
-export {
-  IMAGES_FOLDER,
-  THUMBS_FOLDER,
-  existImage,
-  existThumbImage,
-  existFolder,
-  createFolder,
-};
+export { IMAGES_FOLDER, THUMBS_FOLDER, existImage, existThumbImage, existFolder, createFolder };

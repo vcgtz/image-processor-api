@@ -5,7 +5,8 @@
     "node": true
   },
   "extends": [
-    "airbnb-base"
+    "airbnb-base",
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -20,6 +21,11 @@
     "arrow-body-style": "off",
     "prefer-destructuring": "warn",
     "import/extensions": [0],
-    "import/no-unresolved": [0]
+    "import/no-unresolved": [0],
+    "prettier/prettier": [0,
+    {
+      "singleQuote": true,
+      "semi": true
+    }]
   }
 }
