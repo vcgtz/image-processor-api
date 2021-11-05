@@ -22,9 +22,11 @@ Run the linter to analize the possible errors in the code using a configuration 
 ```bash
 npm run lint
 ```
-Fix errors using the rules by `prettier`
+Fix errors using the rules using `eslint` or `prettier`
 ```bash
-npm run lint:fix
+npm run lint:fix # To clean the code using elint
+
+npm run prettier # To clean the code using prettier
 ```
 
 ## Testing
