@@ -29,15 +29,19 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
     if (width && height) {
       const thumbFilename = `${width}_${height}_${filename}`;
       const thumbImagePath = `${images.THUMBS_FOLDER}/${thumbFilename}`;
-      const existsThumbImage = await images.existThumbImage(thumbImagePath);
+      const existsThumbImage = await images.existThumbImage(thumbFilename);
 
       if (existsThumbImage) {
+        console.log(`Accessed: ${thumbImagePath}`);
+
         return res.sendFile(thumbImagePath);
       }
 
       await sharp(imagePath)
         .resize(Number(width as unknown), Number(height as unknown))
         .toFile(thumbImagePath);
+
+      console.log(`Created: ${thumbImagePath}`);
 
       return res.sendFile(thumbImagePath);
     }
@@ -48,6 +52,8 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
   }
 
   // Return the original image
+  console.log(`Accessed: ${imagePath}`);
+
   return res.sendFile(imagePath);
 });
 
