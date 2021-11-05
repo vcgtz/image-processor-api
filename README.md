@@ -1,36 +1,43 @@
 # Image Processor API
-API to process images and get new rezised images
+A simple API to generate different sizes of images
 
 ## How to start?
-1. Download the project
-2. Install dependencies:
+Download the project
+```bash
+git clone git@github.com:vcgtz/image-processor-api.git
+```
+Install dependencies
+
 ```bash
 cd image-processor-api
-
 npm install
 ```
-3. Run the project:
+Run the project
 ```bash
 npm run start
 ```
 
-## Commands
-1. Run the linter:
+## Analize and improve your coding style
+Run the linter to analize the possible errors in the code using a configuration with `eslint` and `prettier`
 ```bash
 npm run lint
 ```
-2. Fix errors using `eslint`:
+Fix errors using the rules by `prettier`
 ```bash
 npm run lint:fix
 ```
-3. Compile the application to JS files:
-```bash
-npm run build
-```
-4. Run the tests:
+
+## Testing
+Run the tests
 ```bash
 # This command compile the code and run the tests
 npm run test
+```
+
+## Compile the application
+Compile the `typescript` files to `javascript` files
+```bash
+npm run build
 ```
 
 ## How to use it?
