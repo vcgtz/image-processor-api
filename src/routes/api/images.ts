@@ -52,7 +52,7 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
   } catch (err) {
     console.error(err);
 
-    return res.status(500).json({ msg: 'A problem has ocurred' });
+    return res.status(500).json({ msg: String(err) });
   }
 
   // Return the original image
