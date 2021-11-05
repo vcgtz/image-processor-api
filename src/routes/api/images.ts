@@ -41,9 +41,7 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
         return res.sendFile(thumbImagePath);
       }
 
-      await sharp(imagePath)
-        .resize(width, height)
-        .toFile(thumbImagePath);
+      await sharp(imagePath).resize(width, height).toFile(thumbImagePath);
 
       // Store the path to avoid read a file if this exists
       cache.set(thumbFilename, thumbImagePath);
