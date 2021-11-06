@@ -4,6 +4,8 @@ const IMAGES_FOLDER: string = `${process.cwd()}/images`;
 
 const THUMBS_FOLDER: string = `${process.cwd()}/thumbs`;
 
+const DUMMIES_FOLDER: string = `${process.cwd()}/dummies`;
+
 const existImage = async (filename: string): Promise<boolean> => {
   try {
     await fsPromises.access(`${IMAGES_FOLDER}/${filename}`);
@@ -40,4 +42,16 @@ const createFolder = async (path: string): Promise<boolean> => {
   }
 };
 
-export { IMAGES_FOLDER, THUMBS_FOLDER, existImage, existThumbImage, existFolder, createFolder };
+const getDummyImageSVG = (width: number, height: number): string => {
+  return `
+    <svg width="${width}" height="${height}">
+      <style>
+        .title { fill: #001; font-size: 1.5em; font-family: sans-serif; font-weight: bold;}
+      </style>
+      <rect width="100%" height="100%" fill="#eeeeee" />
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="title">${width} x ${height}</text>
+    </svg>
+  `;
+};
+
+export { IMAGES_FOLDER, THUMBS_FOLDER, DUMMIES_FOLDER, existImage, existThumbImage, existFolder, createFolder, getDummyImageSVG };
