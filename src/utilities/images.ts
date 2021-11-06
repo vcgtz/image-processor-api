@@ -4,7 +4,9 @@ const IMAGES_FOLDER: string = `${process.cwd()}/images`;
 
 const THUMBS_FOLDER: string = `${process.cwd()}/thumbs`;
 
-const DUMMIES_FOLDER: string = `${process.cwd()}/dummies`;
+const RESIZED_FOLDER: string = `${process.cwd()}/thumbs/resized`;
+
+const DUMMIES_FOLDER: string = `${process.cwd()}/thumbs/dummies`;
 
 const existImage = async (filename: string): Promise<boolean> => {
   try {
@@ -54,4 +56,4 @@ const getDummyImageSVG = (width: number, height: number): string => {
   `;
 };
 
-export { IMAGES_FOLDER, THUMBS_FOLDER, DUMMIES_FOLDER, existImage, existThumbImage, existFolder, createFolder, getDummyImageSVG };
+export { IMAGES_FOLDER, THUMBS_FOLDER, RESIZED_FOLDER, DUMMIES_FOLDER, existImage, existThumbImage, existFolder, createFolder, getDummyImageSVG };

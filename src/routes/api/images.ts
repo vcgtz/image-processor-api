@@ -32,7 +32,7 @@ imagesRoutes.get('/', async (req: express.Request, res: express.Response) => {
   try {
     if (width && height) {
       const thumbFilename: string = `${width}_${height}_${filename}`;
-      const thumbImagePath: string = `${images.THUMBS_FOLDER}/${thumbFilename}`;
+      const thumbImagePath: string = `${images.RESIZED_FOLDER}/${thumbFilename}`;
       const existsThumbImage: unknown = cache.get(thumbFilename);
 
       if (existsThumbImage) {
