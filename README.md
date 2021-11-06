@@ -42,7 +42,7 @@ Compile the `typescript` files to `javascript` files
 npm run build
 ```
 
-## How to use it?
+## Resizing images
 1. Add your images to the `images` folder
 2. Make a `GET` request to `http://localhost:3000/api/images?filename=<filename>` to get the original file, for example:
 ```
@@ -54,3 +54,13 @@ http://localhost:3000/api/images?filename=santamonica.jpg&width=450&height=450
 ```
 
 **NOTE**: `santamonica.jpg` is a sample image including in the project
+
+## Generating dummy images
+1. Make a `GET` request to `http://localhost:3000/api/dummy-images?width=<width>&height=<height>` to get a dummy image with that size, for example:
+```
+http://localhost:3000/api/dummy-images?width=450&height=350
+```
+This url will generate a image like this:
+
+![450x350](https://user-images.githubusercontent.com/55886451/140622826-ecd15c78-6f26-4118-bff5-0e0da3313cd7.png)
+
