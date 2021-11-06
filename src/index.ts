@@ -1,6 +1,6 @@
 import express from 'express';
 import routes from './routes/index';
-import { createFolder, existFolder, RESIZED_FOLDER,  DUMMIES_FOLDER} from './utilities/images';
+import { createFolder, existFolder, RESIZED_FOLDER, DUMMIES_FOLDER } from './utilities/images';
 
 const app: express.Express = express();
 const port: number = 3000;

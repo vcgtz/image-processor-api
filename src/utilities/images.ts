@@ -56,4 +56,14 @@ const getDummyImageSVG = (width: number, height: number): string => {
   `;
 };
 
-export { IMAGES_FOLDER, THUMBS_FOLDER, RESIZED_FOLDER, DUMMIES_FOLDER, existImage, existThumbImage, existFolder, createFolder, getDummyImageSVG };
+export {
+  IMAGES_FOLDER,
+  THUMBS_FOLDER,
+  RESIZED_FOLDER,
+  DUMMIES_FOLDER,
+  existImage,
+  existThumbImage,
+  existFolder,
+  createFolder,
+  getDummyImageSVG
+};
