@@ -119,3 +119,4 @@ dist
 
 thumbs/
 dummies/
+.DS_Store
